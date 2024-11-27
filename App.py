@@ -25,7 +25,7 @@ lemmatizer = WordNetLemmatizer()
 
 # Define paths to model files (assuming they're in the same directory as app.py)
 WORD2VEC_MODEL_PATH = "word2vec_model.joblib"
-XGB_MODEL_PATH = "best_model.joblib"
+XGB_MODEL_PATH = "best_xgb_model.joblib"
 ENCODER_PATH = "label_encoder.joblib"
 SCALER_PATH = "scaler.joblib"
 
