@@ -94,12 +94,19 @@ if message_text:
         prediction = model.predict(message_embedding_scaled)
         predicted_label = encoder.inverse_transform(prediction)[0]
 
-        # Map the label to sentiment (Positive/Negative)
-        sentiment = "Positive" if predicted_label == 1 else "Negative"
-
         # Display results
+        if predicted_label == 1:
+            sentiment = "Spam"
+        else:
+            sentiment = "Ham"
+        
         st.write(f"The predicted label is: **{predicted_label}** ({sentiment})")
 
         # Display Class Mapping
-        st.write("### Class Mapping:")
-        st.table({i: label for i, label in enumerate(class_names)})
+        class_mapping_df = pd.DataFrame({
+            "Class": class_names,
+            "Value": range(len(class_names))
+        })
+        class_mapping_df = class_mapping_df.rename(columns={"Class": "", "Value": "value"})
+        class_mapping_df.loc[0, ""] = "Ham"
+        class_mapping_df.loc[2, ""] = "Spam"
